@@ -89,6 +89,12 @@ var args = optimist
       describe: 'default root pattern for redis keys',
       default: '*'
   })
+  .options('folding-char', {
+      alias: 'fc',
+      boolean: false,
+      describe: 'default key folding character',
+      default: ':'
+  })  
   .argv;
 
 if (args.help) {
@@ -224,5 +230,5 @@ function startWebApp () {
     args['nosave'] = false;
   }
   console.log("No Save: " + args["nosave"]);
-  app(httpServerOptions, redisConnections, args["nosave"], args['root-pattern']);
+  app(httpServerOptions, redisConnections, args["nosave"], args['root-pattern'], args['folding-char']);
 }
